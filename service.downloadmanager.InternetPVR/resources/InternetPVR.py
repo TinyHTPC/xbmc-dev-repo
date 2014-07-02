@@ -473,7 +473,7 @@ try:
         defaultConfig['kickasstorrents'] = {}
         defaultConfig['kickasstorrents']['enabled']       = 'True'
         defaultConfig['kickasstorrents']['seed_time']     = '0'
-        defaultConfig['kickasstorrents']['seed_ratio']    =	 '0'
+        defaultConfig['kickasstorrents']['seed_ratio']    = '0'
         defaultConfig['torrentz'] = {}
         defaultConfig['torrentz']['enabled']              = 'True'
         defaultConfig['torrentz']['verified_only']        = 'True'
