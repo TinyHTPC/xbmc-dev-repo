@@ -1,0 +1,28 @@
+{% extends "library/base.html" %}
+{% block xbmc_library_title %}XBMC Library{% endblock %}
+{% block xbmc_library_content %}
+  <ul class="list_view">
+    <li class="get" data-url="/movies">Movies</li>
+    <li class="get" data-url="/tvshows">TV Shows</li>
+    {% if show_music %}
+      <li class="get" data-url="/artists">Music</li>
+    {% endif %}
+    {% if show_files %}
+      <li class="get" data-url="/files">Files</li>
+    {% endif %}
+    {% if show_pvr %}
+      <li class="get" data-url="/pvr">PVR</li>
+    {% endif %}
+  </ul>
+{% endblock %}
+
+{% block power_holder %}
+  {% if not show_music %}
+    <div class="power" title="Update Video Library" id="video-update">
+      <img src="{{ url_for('static', filename='images/refresh.png') }}"/>
+    </div>
+    <div class="power" title="Clean Video Library" id="video-clean">
+      <img src="{{ url_for('static', filename='images/clean.png') }}"/>
+    </div>
+  {% endif %}
+{% endblock %}

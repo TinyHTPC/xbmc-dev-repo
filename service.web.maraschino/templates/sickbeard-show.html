@@ -1,0 +1,28 @@
+{% extends "sickbeard-base.html" %}
+
+{% block sickbeard_content %}
+
+<div id="sb_content">
+  <div id='show'>
+    <p class="sb-back">&laquo;</p>
+    <div class="banner">
+      <h2 class="show-name">{{sickbeard.show_name}}</h2>
+      <img src="{{sickbeard.url}}" />
+      <p class="airtime">{{sickbeard.airs}}</p>
+      <p class="quality">{{sickbeard.quality}}</p>
+      <p class="genre">{{ sickbeard.genre[0] }}</p>
+      <p class="options">Options</p>
+      <p class="manage" tvdbid="{{sickbeard.tvdb}}">
+        <span class="delete">Delete Show</span><span class="refresh">Refresh Show</span><span class="update">Update Show</span>
+        <span class="close">X</span>
+      </p>
+    </div>
+    <ul class="seasons">
+      {% for season in sickbeard.season_list|sort %}
+      <li season="{{season}}" tvdbid="{{sickbeard.tvdb}}">Season {{ season }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}

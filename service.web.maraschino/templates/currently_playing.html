@@ -1,0 +1,126 @@
+<div id="currently_playing" data-id="{{ currently_playing.id }}"{% if fanart %} data-fanart="{{ fanart|xbmc_image }}"{% endif %} class="{{'minimize' if minimize else 'maximize'}}">
+
+  <div class="visibility">
+    <ul>
+      <li class="close"></li>
+      <li class="minimize"></li>
+    </ul>
+  </div>
+
+  <div class="thumb">
+    {% if currently_playing.artist %}
+      {% if currently_playing.thumbnail%}
+        <img class="albumart" src="{{ itemart|xbmc_image }}">
+        <p class="item_info_artist">
+      {% else %}
+        <p class="item_info">
+      {% endif %}
+
+    {% elif currently_playing.showtitle %}
+      {% if currently_playing.thumbnail%}
+        <img class="episodeart" src="{{ itemart|xbmc_image }}">
+        <p class="item_info_show">
+      {% else %}
+        <p class="item_info">
+      {% endif %}
+
+    {% elif currently_playing.title == '' %}
+      {% if currently_playing.thumbnail%}
+        <img class="episodeart" src="{{ itemart|xbmc_image }}">
+        <p class="item_info_show">
+      {% else %}
+        <p class="item_info">
+      {% endif %}
+
+    {% else %}
+      {% if currently_playing.thumbnail%}
+        <img class="posterart" src="{{ itemart|xbmc_image }}">
+        <p class="item_info_movie">
+      {% else %}
+        <p class="item_info">
+      {% endif %}
+    {% endif %}
+
+      <span class="playlist" title="View playlist"><strong>Currently playing:</strong></span><br>
+
+      {% if currently_playing.showtitle %}
+        <span class="show invoke_library" data-path="/seasons?tvshowid={{ currently_playing.tvshowid }}">
+          {{ currently_playing.showtitle }}
+        </span>
+        <span class="separator">-</span>
+        <span class="season invoke_library" data-path="/episodes?tvshowid={{ currently_playing.tvshowid }}&season={{ currently_playing.season }}">
+          Season {{ currently_playing.season }}
+        </span>,
+        <span class="episode invoke_library" data-path="/episodes?tvshowid={{ currently_playing.tvshowid }}&season={{ currently_playing.season }}&episodeid={{ currently_playing.id }}">
+          Episode {{ currently_playing.episode }}
+          <span class="separator">-</span>
+          "{{ currently_playing.label }}"
+        </span>
+      {% elif currently_playing.artist %}
+        <span>
+          {{ currently_playing.artist }}
+        </span>
+        <span class="separator">-</span>
+        <span>
+          {{ currently_playing.album }} ({{ currently_playing.year }})
+        </span>
+        <br>{{ '0' if currently_playing.track < 10 }}{{ currently_playing.track }}. {{ currently_playing.title }}
+      {% elif currently_playing.type == 'movie' %}
+        <span class="movie invoke_library" data-path="/movies?movieid={{ currently_playing.id }}">
+          {{ currently_playing.label }} ({{ currently_playing.year }})
+        </span>
+      {% elif currently_playing.type == 'channel' %}
+        {{ currently_playing.label }}<br>{{ currently_playing.title }}
+
+      {% else %}
+        {{ currently_playing.label }}
+      {% endif %}
+    </p>
+  </div>
+
+  <div class="progress" data-progress="{{ percentage_progress }}%">
+    <div class="bar">
+      <div class="inner" style="width: {{ percentage_progress }}%;"></div>
+    </div>
+    <div class="current">{{ current_time }}</div>
+    <div class="total" data-seconds="{{total_time_seconds}}">{{ total_time }}</div>
+  </div>
+
+  <div class="controls">
+    <div class="div previous" data-command="previous" title="Previous">Previous</div>
+    <div class="div rewind" data-command="rewind" title="Rewind">Rewind</div>
+    <div class="div stop" data-command="stop" title="Stop">Stop</div>
+    <div class="div play_pause" data-command="play_pause" title="Play/Pause">Play/Pause</div>
+    <div class="div fast_forward" data-command="fast_forward" title="Fast forward">Fast Forward</div>
+    <div class="div next" data-command="next" title="Next">Next</div>
+    <!--
+    <div class="option">
+    <div class="shuffle{{ ' active' if shuffled }}" data-command="shuffle" title="Shuffle">Shuffle</div>
+    <div class="repeat{% if repeat != 'off' %} repeat_{{ repeat }}{% endif %}" data-command="repeat" title="Repeat">Repeat</div>
+    <div class="mute{{ ' active' if muted }}" data-command="mute" title="Mute">Mute</div>
+    </div>
+    -->
+    <div class="volume" data-volume="{{ volume }}%">
+      <div class="volume-icon"></div>
+      <div class="bar">
+        <div class="inner" style="height: {{ volume/2 }}px;"></div>
+      </div>
+    </div>
+  </div>
+
+  {% if currently_playing.plot %}
+    <div class="synopsis">
+      <h2>
+        {% if currently_playing.showtitle %}
+          {{ currently_playing.showtitle }} -
+          {{ currently_playing.season }}x{{ currently_playing.episode }} -
+          "{{ currently_playing.title }}"
+        {% else %}
+          {{ currently_playing.title }} {{ currently_playing.year }}
+        {% endif %}
+      </h2>
+      <p>{{ currently_playing.plot|truncate(750) }}</p>
+    </div>
+  {% endif %}
+
+</div>

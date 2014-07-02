@@ -1,0 +1,62 @@
+<div id="recently_added_movies" class="module" data-module="recently_added_movies" data-movie_offset="{{ movie_offset }}">
+
+  <div class="module_settings"><span>Settings</span></div>
+  <div class="module_remove"><span>Remove</span></div>
+
+  <h2>Recently Added Movies</h2>
+
+  {% if recently_added_movies %}
+    {% if using_db %}
+      <p class="problem">There was a problem connecting to the XBMC server. Showing last known results.</p>
+    {% endif %}
+
+    {% if compact_view %}
+    <div class="compact">
+    {% endif %}
+      <ul class="movies listfix">
+        {% for movie in recently_added_movies %}
+          {% if using_db %}
+            <li title="{{ movie.title }} ({{ movie.year }})"{% if movie.playcount %} class="watched"{% endif %}>
+          {% elif view_info %}
+            <li id="info_movie" data-movieid="{{ movie.movieid }}" title="Information for {{ movie.title }} ({{ movie.year }})"{% if movie.playcount %} class="watched"{% endif %}>
+          {% else %}
+            <li id="play_movie" data-movieid="{{ movie.movieid }}" title="Play {{ movie.title }} ({{ movie.year }})"{% if movie.playcount %} class="watched"{% endif %}>
+          {% endif %}
+
+            {% if movie.thumbnail and not compact_view %}
+              <div class="thumbnail">
+                <img src="{{ movie.thumbnail }}" alt="">
+              </div>
+            {% endif %}
+
+            <div class="inner">
+              {% if compact_view %}
+              <p><b>{{ movie.title }}</b> <span class="extra">{{ movie.year }} | {{ movie.rating|float|round(1, 'common') }}</span></p>
+              {% else %}
+              <h3 class="first">{{ movie.title }}</h3>
+              <p class="second">Year: {{ movie.year }}</p>
+              <p class="third">Rating: {{ movie.rating|float|round(1, 'common') }}</p>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+
+    {% if compact_view %}
+    </div>
+    {% endif %}
+
+    <div class="clearfix">
+      {% if movie_offset + recently_added_movies|length < total_movies %}
+        <a class="view_older" title="Older">&raquo;</a>
+      {% endif %}
+      {% if movie_offset > 0 %}
+        <a class="view_newer" title="Newer">&laquo;</a>
+      {% endif %}
+    </div>
+
+  {% else %}
+    <p class="problem">There was a problem connecting to the XBMC server.</p>
+  {% endif %}
+
+</div>

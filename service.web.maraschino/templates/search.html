@@ -1,0 +1,34 @@
+<div id="search">
+  <div class="module_settings"><span>Settings</span></div>
+  <div id="close"></div>
+  <div class="inner">
+    <form>
+      <div class="searching" style="display: none;"></div>
+      <input id="value" type="search" {% if term %}value="{{term}}"{% endif %}>
+      <select id="site">
+        <optgroup label="Sites">
+          {% for newznab in newznab_sites %}
+            <option value="{{newznab.id}}" {% if site == newznab.id %}selected{%endif%}>{{newznab.name}}</option>
+          {% endfor %}
+      	</optgroup >
+      </select>
+      {% if categories|length %}
+        <select id="category">
+          {% for cat in categories %}
+            {% if cat.label %}
+              <option {% if "%s"|format(cat.id) == category %}selected{% endif %} value="{{cat.id}}">{{cat.label}}</option>
+              {% for x in cat.value %}
+                <option {% if "%s"|format(cat.value[x].id) == category %}selected{% endif %} value="{{cat.value[x].id}}">- {{cat.value[x].name}}</option>
+              {% endfor %}
+            {% else %}
+              <option value="{{cat.id}}">{{cat.name}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      {% endif %}
+      <input id="maxage" type="number" placeholder="Max Age (Days)" {% if maxage > 1 %}value="{{maxage}}"{% endif %}>
+    </form>
+
+    {% block results %}{% endblock %}
+  </div>
+</div>

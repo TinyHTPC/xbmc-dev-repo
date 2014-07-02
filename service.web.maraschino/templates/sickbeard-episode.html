@@ -1,0 +1,49 @@
+{% extends "sickbeard-base.html" %}
+
+{% block sickbeard_content %}
+
+<div id="sb_content" class="episode-info">
+
+  <div class="back" tvdbid="{{ id }}" season="{{ season }}">
+    <p class="back">&laquo;</p>
+  </div>
+
+  <div class="clearfix">
+    <h4{% if sickbeard.status =='Downloaded' %} class="downloaded"{% endif %}>
+      Episode: <a href="http://www.thetvdb.com/?tab=series&id={{id}}" target="_blank">{{ sickbeard.name }}</a>
+    </h4>
+
+    {% if not sickbeard.status =='Downloaded' %}
+    <p class="status">
+      <select id="{{ id }}" episode="{{ ep }}" season="{{ season }}">
+        <option {% if (sickbeard.status == 'Wanted') %}SELECTED{% endif %}>wanted</option>
+        <option {% if (sickbeard.status == 'Skipped') %}SELECTED{% endif %}>skipped</option>
+        <option {% if (sickbeard.status == 'Archived') %}SELECTED{% endif %}>archived</option>
+        <option {% if (sickbeard.status == 'Ignored') %}SELECTED{% endif %}>ignored</option>
+      </select>
+      <img class="search" height="15px" src="{{ url_for('static', filename='images/search.png') }}" id="{{ id }}" episode="{{ ep }}" season="{{ season }}" title="Search for episode"/>
+    </p>  
+    {% endif %}
+  </div>
+
+  {% if sickbeard.description != '' %}
+  <p class="plot">{{ sickbeard.description }}</p>
+  {% endif %}
+
+  <div class="details">
+    {% if sickbeard.airdate != '' %}
+    <div class="airdate"><strong>Aired:</strong> {{ sickbeard.airdate }}</div>
+    {% endif %}
+
+    {% if sickbeard.location != '' %}
+    <div class="location"><strong>Path:</strong> {{ sickbeard.location }}</div>
+    {% endif %}
+
+    {% if sickbeard.quality   != '' %}
+    <div class="quality"><strong>Quality:</strong> {{ sickbeard.quality }}</div>
+    {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}

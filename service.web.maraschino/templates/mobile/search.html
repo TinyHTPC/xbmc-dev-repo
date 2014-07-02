@@ -1,0 +1,50 @@
+{% extends "mobile/base.html" %}
+
+{% block header %}<h1>Search</h1>{% endblock %}
+
+{% block content %}
+<div id="search">
+    <input type="search" id="search_field" placeholder="Usenet search" value="{{ query if query }}"/>
+    <fieldset data-role="controlgroup">
+        <select name="site" id="site">
+            <option>Site</option>
+            <option value="nzbmatrix" {% if site == 'nzbmatrix' %}selected{% endif %}>NZBMatrix</option>
+            {% for newznab in newznab_sites %}
+                <option value="{{newznab.id}}" {% if site == newznab.id %}selected{% endif %}>{{newznab.name}}</option>
+            {% endfor %}
+        </select>
+        {% if categories|length %}
+            <select id="category">
+              {% for cat in categories %}
+                {% if cat.label %}
+                  <option {% if "%s"|format(cat.id) == category %}selected{% endif %} value="{{cat.id}}">{{cat.label}}</option>
+                  {% for subcat in cat.value %}
+                    <option {% if "%s"|format(subcat.id) == category %}selected{% endif %} value="{{subcat.id}}">- {{subcat.name}}</option>
+                  {% endfor %}
+                {% else %}
+                  <option value="{{cat.id}}">{{cat.name}}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+        {% endif %}
+    </fieldset>
+    <br><br>
+
+    {% if results %}
+        <ul id="results" data-role="listview" data-split-theme="e" data-split-icon="sab">
+        {% for item in results %}
+            <li>
+                <a href="{{item.details}}">
+                    <h2>{{item.title}}</h2>
+                    <p>
+                        {{ item.size }} |
+                        {{ item.category }}
+                    </p>
+                </a>
+                <a href="#" class="add_to_sab" data-url={{ item.nzblink|add_to_sab }}>Add To SabNZBd</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

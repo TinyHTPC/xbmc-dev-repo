@@ -1,0 +1,61 @@
+#log_dialog
+{
+  margin: 0 auto;
+  width: 50%;
+  top: 20px;
+  bottom: 20px;
+
+  h2 {
+    font-size: x-large;
+    margin-bottom: 10px;
+  }
+
+  select {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .log {
+    height: 85%;
+    overflow: auto;
+    padding: 0px 10px;
+    .border-radius(4px);
+    background: url('/@{webroot}/images/alpha/fff_10.png');
+
+    table {
+      width: 100%;
+
+      tr {
+        &.disabled {
+          display: none;
+        }
+
+        td {
+          text-align: center;
+          padding: 10px;
+
+          &:last-child {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  .button {
+    background: url('/@{webroot}/images/alpha/fff_10.png');
+    border: 1px solid #222;
+    color: #ccc;
+    cursor: pointer;
+    padding: 2px 8px;
+    height: 20px;
+    line-height: 25px;
+    .border-radius(4px);
+
+    &:hover {
+      background: url('/@{webroot}/images/alpha/fff_20.png');
+    }
+  }
+}
+

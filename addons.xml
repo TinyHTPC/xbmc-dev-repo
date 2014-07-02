@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
+<addon id="script.tiny.mx" name="TinyOS  Update Service" version="2.0.0" provider-name="TinyHTPC">
+  <requires>
+    <import addon="xbmc.python" version="2.0"/>
+  </requires>
+  <extension point="xbmc.service" library="service.py" start="startup" />
+  <extension point="xbmc.python.script" library="default.py" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">TinyOS Update Service</summary>
+    <description lang="en">TinyOS Update Service</description>
+     <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="service.downloadmanager.transmission"
        name="Transmission-daemon for Cortex-A9"
-       version="1.0.8"
+       version="1.0.11"
        provider-name="TinyHTPC.co.nz">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -17,6 +30,29 @@
 Transmission is a fast, easy and free BitTorrent client.
 Ported from OpenELEC transmission add-on, this has be re-compiled for Cortex-A9.
 Transmission can be accessed on a remote web browser via: http://[xbmcIP]:9091
+    </description>
+    <disclaimer>
+
+    </disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="service.web.maraschino"
+       name="maraschino"
+       version="4.1.0"
+       provider-name="unofficial.addon.pro">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.service"
+             library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Maraschino: Web interface to act as a nice overview/front page for my XBMC HTPC</summary>
+    <description>
+Maraschino is an XBMC web interface with customisable applications module providing quick access to your web interfaces (e.g. SABnzb+, SickBeard, or whatever else you want to link to), recently added episodes module, media library browser, currently playing bar and disk space module.
     </description>
     <disclaimer>
 
@@ -53,9 +89,10 @@ Transmission can be accessed on a remote web browser via: http://[xbmcIP]:9091
 
 <addon id="service.downloadmanager.InternetPVR"
        name="Internet PVR Suite"
-       version="1.0.7"
+       version="1.1.0"
        provider-name="TinyHTPC.co.nz">
   <requires>
+    <import addon="xbmc.addon" version="12.0.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="service.downloadmanager.transmission" version="0.1.0"/>
   </requires>
@@ -67,7 +104,7 @@ Transmission can be accessed on a remote web browser via: http://[xbmcIP]:9091
              library="service.py">
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">InternetPVR is a Media tracking suit which combines the programs: SickBeard, Couchpotato V2 and Headphones in one Addon</summary>
+    <summary lang="en">InternetPVR is a Media tracking suit which combines the programs: SickBeard, CouchPotato V2 and Headphones in one Addon</summary>
     <description lang="en">
  - Sickbeard: Tracks your TVShows and automatically downloads the next one when it becomes available.
  - Couchpotato: Automatically searches for and downloads your Movie torrents according to your requests.
@@ -75,7 +112,7 @@ Transmission can be accessed on a remote web browser via: http://[xbmcIP]:9091
 
 InternetPVR is a fork of lsellens' SickPotatoHead.
     </description>
-    <platform>all</platform>
+    <platform>linux</platform>
   </extension>
 </addon>
 
@@ -90,5 +127,22 @@ InternetPVR is a fork of lsellens' SickPotatoHead.
         <description>Download and install addons by TinyHTPC</description>
         <platform>all</platform>
     </extension>
+</addon>
+
+<addon id="plugin.tiny"
+    name="TinyHTPC Config" version="0.0.1" provider-name="TinyHTPC">
+  <requires>
+    <import addon="xbmc.python" version="2.0"/>
+  </requires>
+  <extension point="xbmc.python.script" library="default.py">
+     <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="services.py" start="startup"/>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Easily configure your TinyOS installation.</summary>
+    <description lang="en">Configure settings for your Tiny Home Theatre PC.</description>
+    <platform>all</platform>
+    <language></language>
+  </extension>
 </addon>
 </addons>

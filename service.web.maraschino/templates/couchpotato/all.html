@@ -1,0 +1,27 @@
+{% extends "couchpotato/base.html" %}
+
+{% block couchpotato_menu %}
+<ul class="menu">
+  <li class="history" title="View History"><span>History</span></li>
+  <li class="all active" title="View all"><span>All</span></li>
+  <li class="wanted" title="View wanted"><span>Wanted</span></li>
+</ul>
+{% endblock %}
+
+{% block couchpotato_content %}
+
+<div id="all" class="noscroll">
+  {% for item in couchpotato.movies %}
+    <div class="movie" id="{{item.library.identifier}}" data-cpid="{{item.id}}">
+      <div class="{{item.releases.status}}"></div>
+      <img class="poster"
+      src="{% if item.library.files[1] %}{{item.library.files[1].path|cp_img}} {% else %}{{ url_for('static', filename='images/poster.png') }}{% endif %}"
+      />
+      <span class="title text">{{item.library.titles[0].title}} ({{item.library.year}})</span>
+      {% if item.library.rating %}<span class="rating text">Rating: {{item.library.rating}}</span>{% endif %}
+      <span class="profile" title="CouchPotato quality profile">{{item.profile_label}}</span>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
