@@ -15,7 +15,7 @@
 
 <addon id="service.downloadmanager.transmission"
        name="Transmission-daemon for Cortex-A9"
-       version="1.0.11"
+       version="1.0.10"
        provider-name="TinyHTPC.co.nz">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

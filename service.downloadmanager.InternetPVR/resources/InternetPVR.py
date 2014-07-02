@@ -337,6 +337,8 @@ try:
         defaultConfig['General']['torrent_method']        = 'transmission'
         defaultConfig['General']['naming_pattern']        = 'Season %0S/%S.N.S%0SE%0E.%Q.N-%RG'
         defaultConfig['General']['process_automatically'] = '1'
+        defaultConfig['General']['use_api']               = '1'
+        defaultConfig['General']['api_key']               = 'eff2ebc240c91e342e14418874cc7a4f'
         defaultConfig['General']['tv_download_dir']       = pInternetPVRCompleteTV
         defaultConfig['General']['metadata_xbmc_12plus']  = '0|0|0|0|0|0|0|0|0|0'
         defaultConfig['General']['keep_processed_dir']    = '0'
@@ -471,7 +473,7 @@ try:
         defaultConfig['kickasstorrents'] = {}
         defaultConfig['kickasstorrents']['enabled']       = 'True'
         defaultConfig['kickasstorrents']['seed_time']     = '0'
-        defaultConfig['kickasstorrents']['seed_ratio']    = '0'
+        defaultConfig['kickasstorrents']['seed_ratio']    =	 '0'
         defaultConfig['torrentz'] = {}
         defaultConfig['torrentz']['enabled']              = 'True'
         defaultConfig['torrentz']['verified_only']        = 'True'
