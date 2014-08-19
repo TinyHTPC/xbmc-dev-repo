@@ -57,6 +57,23 @@ if not os.path.exists(pTransmission_Addon_Settings):
       os.makedirs(pAddonHome+'/torrents')
    shutil.copy(pDefaultSuiteSettings, pTransmission_Addon_Settings)
 
+# copy old .cache files from home to addon_data
+root_src_dir = os.path.expanduser("~/.cache")
+root_dst_dir = os.path.join(pAddonHome, ".cache")
+if os.path.isdir(root_src_dir):
+    for src_dir, dirs, files in os.walk(root_src_dir):
+        dst_dir = src_dir.replace(root_src_dir, root_dst_dir)
+        if not os.path.exists(dst_dir):
+            os.mkdir(dst_dir)
+        for file_ in files:
+            src_file = os.path.join(src_dir, file_)
+            dst_file = os.path.join(dst_dir, file_)
+            if os.path.exists(dst_file):
+                os.remove(dst_file)
+            shutil.move(src_file, dst_dir)
+    shutil.rmtree(root_src_dir)
+   
+
 #Get host IP:
 connected_ifaces = check_connection()
 if len(connected_ifaces) == 0:

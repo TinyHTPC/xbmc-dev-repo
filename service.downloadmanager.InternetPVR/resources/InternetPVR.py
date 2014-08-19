@@ -83,14 +83,17 @@ else:
 started   = 'Service started'+hostIP
 waiting   = 'Looking for Media download folders...'
 disabled  = 'Service disabled for this session'
+restarted = 'Service restarted'+hostIP
 SBport  = ':8082'
 CPport  = ':8083'
 HPport  = ':8084'
+TXport  = ':9091'
 
 # addon
 __addon__             = xbmcaddon.Addon(id='service.downloadmanager.InternetPVR')
 __addonpath__         = xbmc.translatePath(__addon__.getAddonInfo('path'))
 __addonhome__         = xbmc.translatePath(__addon__.getAddonInfo('profile'))
+__addonname__         = __addon__.getAddonInfo('name')
 __icon__              = __addon__.getAddonInfo('icon')
 xbmcUdat              = os.path.expanduser("~/.xbmc/userdata")
 
@@ -282,7 +285,16 @@ ensure_dir(pInternetPVRCompleteTV+"/*")
 ensure_dir(pInternetPVRCompleteMov+"/*")
 ensure_dir(pInternetPVRCompleteMus+"/*")
 
-# Edit Transmission settings and restart.
+# PATCH: Remove old incompatible DBs
+
+
+# Stop Transmission-Daemon
+subprocess.Popen("chmod -R +x " + pTransmission_DIR + "/bin/*" , shell=True, close_fds=True)
+subprocess.Popen(pTransmission_Stop, shell=True, close_fds=True)
+#xbmc.executebuiltin('XBMC.Notification(Transmission,Restarting service,5000,'+ __icon__ +')')
+time.sleep(5)
+
+# Edit Transmission settings.
 print "Edit Transmission settings and restart."
 infile = open(pTransmission_Addon_Settings)
 outfile = open(pTransmission_Settings_New, 'w')
@@ -301,14 +313,6 @@ from shutil import move
 
 remove(pTransmission_Addon_Settings)
 move(pTransmission_Settings_New, pTransmission_Addon_Settings)
-
-
-print "Restarting Transmission..."
-subprocess.Popen("chmod -R +x " + pTransmission_DIR + "/bin/*" , shell=True, close_fds=True)
-subprocess.Popen(pTransmission_Stop, shell=True, close_fds=True)
-time.sleep(15)
-subprocess.Popen(pTransmission_Start, shell=True, close_fds=True)
-time.sleep(1)
 
 # Execution Services:
 # -------------------
@@ -332,6 +336,7 @@ try:
     defaultConfig['XBMC']['xbmc_host']              = 'localhost:' + xbmcPort
     defaultConfig['XBMC']['xbmc_username']          = xbmcUser
     defaultConfig['XBMC']['xbmc_password']          = xbmcPwd
+    defaultConfig['TORRENT'] = {}
 
     if simplemode:
         defaultConfig['General']['torrent_method']        = 'transmission'
@@ -350,7 +355,6 @@ try:
         defaultConfig['General']['naming_ep_type']        = '1'
         defaultConfig['General']['root_dirs']             = '0|' + sickbeard_watch_dir
         defaultConfig['General']['naming_custom_abd']     = '0'
-        defaultConfig['TORRENT'] = {}
         defaultConfig['TORRENT']['torrent_path']          = pInternetPVRCompleteTV
         defaultConfig['TORRENT']['torrent_host']          = 'http://localhost:9091/'
         defaultConfig['EZRSS'] = {}
@@ -367,7 +371,6 @@ try:
         defaultConfig['XBMC']['xbmc_update_full']         = '1'
 
     if transauth:
-        defaultConfig['TORRENT'] = {}
         defaultConfig['TORRENT']['torrent_username']         = transuser
         defaultConfig['TORRENT']['torrent_password']         = transpwd
         defaultConfig['TORRENT']['torrent_path']             = pInternetPVRCompleteTV
@@ -420,9 +423,9 @@ try:
     defaultConfig['xbmc']['host']                   = 'localhost:' + xbmcPort
     defaultConfig['xbmc']['username']               = xbmcUser
     defaultConfig['xbmc']['password']               = xbmcPwd
+    defaultConfig['transmission'] = {}
 
     if simplemode:
-        defaultConfig['xbmc'] = {}
         defaultConfig['xbmc']['xbmc_update_library']      = '1'
         defaultConfig['xbmc']['force_full_scan']          = '1'
         defaultConfig['xbmc']['on_snatch']                = '1'
@@ -434,9 +437,11 @@ try:
         defaultConfig['renamer'] = {}
         defaultConfig['renamer']['enabled']               = '1'
         defaultConfig['renamer']['from']                  = pInternetPVRCompleteMov
+        defaultConfig['renamer']['to']                    = couchpotato_watch_dir
         defaultConfig['renamer']['separator']             = '.'
-        defaultConfig['renamer']['cleanup']               = '0'
+        defaultConfig['renamer']['cleanup']               = '1'
         defaultConfig['renamer']['file_action']           = 'move'
+        defaultConfig['renamer']['rename_nfo']            = '0'
         defaultConfig['subtitle'] = {}
         defaultConfig['subtitle']['languages']            = 'en'
         defaultConfig['subtitle']['enabled']              = '1'
@@ -444,12 +449,12 @@ try:
         defaultConfig['nzbindex']['enabled']              = '0'
         defaultConfig['mysterbin'] = {}
         defaultConfig['mysterbin']['enabled']             = '0'
-        defaultConfig['core'] = {}
         defaultConfig['core']['api_key']                  = 'f181f1fff3c34ba5bc27b0e1c846cfe4'
         defaultConfig['core']['permission_folder']        = '0644'
         defaultConfig['core']['permission_file']          = '0644'
         defaultConfig['core']['port']                     = '8083'
         defaultConfig['core']['show_wizard']              = '0'
+        defaultConfig['core']['launch_browser']           = '0'
         defaultConfig['searcher'] = {}
         defaultConfig['searcher']['preferred_method']     = 'torrent'
         defaultConfig['searcher']['required_words']       = '720p, 1080p'
@@ -459,7 +464,6 @@ try:
         defaultConfig['manage']['library_refresh_interval'] = '10'
         defaultConfig['manage']['enabled']                = '1'
         defaultConfig['manage']['library']                = couchpotato_watch_dir
-        defaultConfig['transmission'] = {}
         defaultConfig['transmission']['enabled']          = '1'
         defaultConfig['transmission']['directory']        = pInternetPVRCompleteMov
         defaultConfig['transmission']['host']             = 'localhost:9091'
@@ -481,7 +485,6 @@ try:
         defaultConfig['torrentz']['seed_ratio']           = '0'
 
     if transauth:
-        defaultConfig['transmission'] = {}
         defaultConfig['transmission']['username']         = transuser
         defaultConfig['transmission']['password']         = transpwd
         defaultConfig['transmission']['directory']        = pInternetPVRCompleteMov
@@ -523,6 +526,7 @@ try:
     defaultConfig['XBMC']['xbmc_host']                    = 'localhost:' + xbmcPort
     defaultConfig['XBMC']['xbmc_username']                = xbmcUser
     defaultConfig['XBMC']['xbmc_password']                = xbmcPwd
+    defaultConfig['Transmission'] = {}
 
     if simplemode:
         defaultConfig['XBMC']['xbmc_update']                  = '1'
@@ -547,12 +551,10 @@ try:
         defaultConfig['General']['kat']                       = '1'
         defaultConfig['General']['mininova']                  = '1'
         defaultConfig['General']['piratebay']                 = '1'
-        defaultConfig['Transmission'] = {}
         defaultConfig['Transmission']['transmission_host']    = 'http://localhost:9091'
 
 
     if transauth:
-        defaultConfig['Transmission'] = {}
         defaultConfig['Transmission']['transmission_username'] = transuser
         defaultConfig['Transmission']['transmission_password'] = transpwd
         defaultConfig['Transmission']['transmission_host']     = 'http://localhost:9091'
@@ -571,3 +573,15 @@ except Exception, e:
     xbmc.log('SickPotatoHead: Headphones exception occurred', level=xbmc.LOGERROR)
     xbmc.log(str(e), level=xbmc.LOGERROR)
 # Headphones end
+
+# Restart Transmission.
+print "Restarting Transmission..."
+if sickbeard_launch and couchpotato_launch and headphones_launch:
+    time.sleep(1)
+elif sickbeard_launch and couchpotato_launch:
+    time.sleep(5)
+else:
+    time.sleep(10)
+subprocess.Popen(pTransmission_Start, shell=True, close_fds=True)
+
+xbmc.executebuiltin('XBMC.Notification(Transmission,'+ restarted + TXport +',5000,'+ __icon__ +')')

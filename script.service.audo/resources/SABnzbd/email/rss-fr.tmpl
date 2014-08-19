@@ -1,0 +1,26 @@
+#encoding UTF-8
+##
+## Template Email pour SABnzbd
+## Ceci est un template Cheetah
+## Documentation: http://sabnzbd.wikidot.com/email-templates
+##
+## Les retours à la ligne et les espaces sont importants !
+##
+## Entêtes de l'email
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd a ajouté  $amount fichier(s) à la file d'attente
+X-priority: 5
+X-MS-priority: 5
+## Après cela vient le contenu, la ligne vide est nécessaire!
+
+Bonjour,
+
+SABnzbd a ajouté  $amount fichier(s) à la file d'attente.
+Ils proviennent du Flux RSS "$feed".
+<!--#for $job in $jobs#-->
+    $job <!--#slurp#-->
+<!--#end for#-->
+
+Au Revoir

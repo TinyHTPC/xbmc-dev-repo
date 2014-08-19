@@ -1,0 +1,23 @@
+#encoding UTF-8
+##
+## Dårlig URL Fetch E-mail skabelon for SABnzbd
+## Dette er en Cheetah skabelon
+## Dokumentation: http://sabnzbd.wikidot.com/email-templates
+##
+## Linjeskift og blanktegn er betydelig!
+##
+## Dette er email headers
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd kunne ikke hente en NZB
+X-priority: 5
+X-MS-priority: 5
+## Efter dette kommer body, den tomme linje kræves!
+
+Hej,
+
+SABnzbd kunne ikke hente NZB fra $url.
+Fejl meddelelsen er: $msg
+
+Farvel

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.service.audo"
+       name="audo-MX Port"
+       version="1.0.5"
+       provider-name="lsellens - ported by Josh.5">
+  <requires>
+    <import addon="xbmc.addon" version="12.0.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+
+  </requires>
+  <extension point="xbmc.python.script"
+             library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service"
+             library="service.py">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Audo (Automatic Downloader) is a fork of SABnzbd-Suite. SABnzbd-Suite Metapackage which combines SABnzbd, SickBeard, Couchpotato and Headphones in one Addon</summary>
+    <summary lang="nl">Audo (Automatische Downloader) is een afsplitsing van SABnzbd-Suite. Sabnzbd-Suite metapackage die SABNZBD, SickBeard, Couchpotato en Headphones combineert in een add-on.</summary>
+    <summary lang="fr">Audo (pour Automatic Downloader) est un fork de SABnzbd-Suite. SABnzbd-Suite méta-paquet qui combine SABnzbd, SickBeard, Couchpotato et Headphones dans un add-on.</summary>
+    <summary lang="pt">O Audo (Automatic Downloader) é uma derivação da SABnzbd-Suite. O Metapacote SABnzbd-Suite combina o SABnzbd, SickBeard, Couchpotato e Headphones num único Addon</summary>
+    <description lang="en">Audo (Automatic Downloader) is a fork of SABnzbd-Suite. Updated frequently to newest versions of SAB, SB(mr.orange branch), CPv2, and HP.</description>
+    <description lang="nl">Audo (Automatische Downloader) is een afsplitsing van SABnzbd-Suite. Wordt frequent geüpdatet naar de nieuwste versies van SAB, SB-mr.orange Branch, CPv2, en HP.</description>
+    <description lang="fr">Audo (pour Automatic Downloader) est un fork de SABnzbd-Suite. Mis à jour fréquemment vers les nouvelles versions de la branche SAB, SB-mr.orange, CPv2 et HP.</description>
+    <description lang="pt">O Audo (Automatic Downloader) é uma derivação da SABnzbd-Suite. É actualizado frequentemente para as mais recentes versões de SAB, ramo SB-mr.orange, CPv2, e HP.</description>
+    <platform>linux</platform>
+  </extension>
+</addon>

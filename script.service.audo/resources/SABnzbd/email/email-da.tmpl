@@ -1,0 +1,42 @@
+#encoding UTF-8
+##
+## Standard Email skabelon til SABnzbd
+## Dette er en Cheetah skabelon
+## Dokumentation: http://sabnzbd.wikidot.com/email-templates
+##
+## Linjeskift og blanktegn er betydelig!
+##
+## Disse er e-mail-headerne 
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd har <!--#if $status then "hentet" else "fejlet" #--> job $name
+X-priority: 5
+X-MS-priority: 5
+## Efter dette kommer body, den tomme linje kræves!
+
+Hej,
+<!--#if $status #-->
+SABnzbd har hentet "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#else#-->
+SABnzbd kunne ikke hente "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#end if#-->
+Færdig kl. $end_time
+Hentet $size
+
+Resultat af job:
+<!--#for $stage in $stages #-->
+Etape $stage <!--#slurp#-->
+<!--#for $result in $stages[$stage]#-->
+    $result <!--#slurp#-->
+<!--#end for#-->
+<!--#end for#-->
+<!--#if $script!="" #-->
+Output fra bruger script "$script" (Exit code = $script_ret):
+$script_output
+<!--#end if#-->
+<!--#if $status #-->
+Enjoy!
+<!--#else#-->
+Sorry!
+<!--#end if#-->

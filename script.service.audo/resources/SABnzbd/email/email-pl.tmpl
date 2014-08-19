@@ -1,0 +1,42 @@
+#encoding UTF-8
+##
+## Domyslny szablon maila w SABnzbd
+## To jest szablon Cheetah
+## Dokumentacja: http://sabnzbd.wikidot.com/email-templates
+##
+## Znak nowego wiersza i spacji ma znaczenie!
+##
+## To sa naglowki maila
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd <!--#if $status then "zakonczyl" else "zakonczyl z bledem" #--> zadanie $name
+X-priority: 5
+X-MS-priority: 5
+## Nastepnie tresc maila, wymagana jest pusta linia!
+
+Czesc,
+<!--#if $status #-->
+SABnzbd pobral "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#else#-->
+SABnzbd nie pobral "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#end if#-->
+Zakonczono o $end_time
+Pobrano $size
+
+Rezultat zadania:
+<!--#for $stage in $stages #-->
+Etap $stage <!--#slurp#-->
+<!--#for $result in $stages[$stage]#-->
+$result <!--#slurp#-->
+<!--#end for#-->
+<!--#end for#-->
+<!--#if $script!="" #-->
+Odpowiedz od skryptu "$script" (kod wyjscia = $script_ret):
+$script_output
+<!--#end if#-->
+<!--#if $status #-->
+Baw sie dobrze!
+<!--#else#-->
+Przykro mi!
+<!--#end if#-->

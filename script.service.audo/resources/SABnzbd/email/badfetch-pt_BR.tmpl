@@ -1,0 +1,23 @@
+#encoding UTF-8
+##
+## Template de e-mail de busca em URL ruim para SABnzbd
+## Este é um template Cheetah
+## Documentação: http://sabnzbd.wikidot.com/email-templates
+##
+## Novas linhas e espaços em branco são significativos!
+##
+## Estes são os cabeçalhos de e-mail
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd falhou ao buscar um NZB
+X-priority: 5
+X-MS-priority: 5
+## Depois daqui vem o corpo. A linha vazia é necessária!
+
+Olá,
+
+SABnzbd não conseguiu obter o NZB de $url.
+A mensagem de erro foi: $msg
+
+Tchau!

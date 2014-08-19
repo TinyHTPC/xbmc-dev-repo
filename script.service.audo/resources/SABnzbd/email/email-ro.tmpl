@@ -1,0 +1,42 @@
+#encoding UTF-8
+##
+## Sablon Email Original pentru SABnzbd
+## Acesta este un Sablon Cheetah
+## Documentatie: http://sabnzbd.wikidot.com/email-templates
+##
+##Rândurile noi si caracterele spatiu sunt importante!
+##
+## Acestea sunt antetele email
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd <!--#if $status then "a terminat" else "nu a reusit" #--> sarcina $name
+X-priority: 5
+X-MS-priority: 5
+## Dupã acesta urmeazã continutul, este necesar o linie goalã!
+
+Salut,
+<!--#if $status #-->
+SABnzbd a descãrcat "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#else#-->
+SABnzbd nu a reusit sã descarce "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#end if#-->
+Terminat la $end_time
+Mãrime $size
+
+Rezultatele sarcinii:
+<!--#for $stage in $stages #-->
+Stagiu $stage <!--#slurp#-->
+<!--#for $result in $stages[$stage]#-->
+    $result <!--#slurp#-->
+<!--#end for#-->
+<!--#end for#-->
+<!--#if $script!="" #-->
+Rezultatul script-ului utilizatorului "$script" (Exit code = $script_ret):
+$script_output
+<!--#end if#-->
+<!--#if $status #-->
+Bucurati-vã!
+<!--#else#-->
+Ne pare rau!
+<!--#end if#-->

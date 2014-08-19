@@ -1,0 +1,42 @@
+#encoding UTF-8
+##
+## Plantilla de correo predeterminada para SABnzbd
+## This a Cheetah template
+## Documentación: http://sabnzbd.wikidot.com/email-templates
+##
+## !Los saltos de línea y espacios en blanco son significativos¡
+##
+## Cabeceras de correo electrónico
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd <!--#if $status then "he bajado" else "fallo en bajar" #--> job $name
+X-priority: 5
+X-MS-priority: 5
+## !Después de esto viene el cuerpo del mensaje, la línea en blanco es necesaria!
+
+Hola,
+<!--#if $status #-->
+SABnzbd he bajado "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#else#-->
+SABnzbd fallo en bajar "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#end if#-->
+Terminado a las $end_time
+$size bajado
+
+Resultado de la transferencia:
+<!--#for $stage in $stages #-->
+Etapa $stage <!--#slurp#-->
+<!--#for $result in $stages[$stage]#-->
+    $result <!--#slurp#-->
+<!--#end for#-->
+<!--#end for#-->
+<!--#if $script!="" #-->
+Producción desde el script de usuario "$script" (Exit code = $script_ret):
+$script_output
+<!--#end if#-->
+<!--#if $status #-->
+Que lo disfrutes!
+<!--#else#-->
+Perdon!
+<!--#end if#-->

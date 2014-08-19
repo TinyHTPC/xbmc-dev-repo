@@ -1,0 +1,37 @@
+<!--#include $webdir + "/inc_top.tmpl"#-->
+<script type="text/javascript">
+function selectLang(lang)
+{
+  var elem = document.getElementById(lang);
+  elem.checked = "checked";
+}
+</script>
+
+<form action="one" method="post">
+<div class="bigger">
+<h3>Language</h3>
+Please choose your prefered language<br /><br />
+<div class="container">
+  <!--#for $l, $language in $languages#-->
+  <div class="language">
+    <label class="skin-select">
+      <br />$language<br /><input type="radio" name="lang" id="$l" value="$l" <!--#if $lang == $l then 'checked=true' else ''#-->>
+    </label>
+  </div>
+  <!--#end for#-->
+</div>
+</div>
+</div>
+<hr />
+<br/>
+<div class="full-width">
+  <table class="full-width">
+    <tr>
+      <td class="align-center"><input class="bigbutton" type="button" onclick="document.location ='./exit'" value="Exit SABnzbd" /></td>
+      <td class="align-center"><input class="bigbutton" type="submit" value="Start Wizard" /></td>
+    </tr>
+  </table>
+</div>
+</form>
+
+<!--#include $webdir + "/inc_bottom.tmpl"#-->

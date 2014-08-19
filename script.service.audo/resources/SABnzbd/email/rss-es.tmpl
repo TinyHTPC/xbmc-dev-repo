@@ -1,0 +1,26 @@
+#encoding UTF-8
+##
+## Plantilla de correo RSS para SABnzbd
+## This a Cheetah template
+## Documentation: http://sabnzbd.wikidot.com/email-templates
+##
+##  !Los saltos de línea y espacios en blanco son significativos¡
+##
+## Cabeceras de correo electrónico
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd he añadido $amount transferencia(s) a la cola
+X-priority: 5
+X-MS-priority: 5
+## !Después de esto viene el cuerpo del mensaje, la línea en blanco es necesaria!
+
+Hola,
+
+SABnzbd he añadido $amount transferencia(s) a la cola.
+Originaron desde el RSS "$feed".
+<!--#for $job in $jobs#-->
+$job <!--#slurp#-->
+<!--#end for#-->
+
+Adios

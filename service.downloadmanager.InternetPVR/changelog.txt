@@ -1,4 +1,10 @@
-[B][COLOR=FF56ADDA]1.1.0[/COLOR][/B]
+[B][COLOR=FF56ADDA]1.1.2 - [/COLOR][/B]
+• Speed up startup time
+
+[B][COLOR=FF56ADDA]1.1.1 - [/COLOR][/B]
+• Fix simple mode settings for CouchPotato
+
+[B][COLOR=FF56ADDA]1.1.0 - 04JUL14[/COLOR][/B]
 • Merge updates from lsellens' SickPotatoHead v1.3.7:
    - Switching SickBeard to mr-orange branch-09ddc02
    - update to CouchPotatoServer-b45307e

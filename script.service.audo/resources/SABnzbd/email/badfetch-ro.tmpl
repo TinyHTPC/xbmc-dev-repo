@@ -1,0 +1,23 @@
+#encoding UTF-8
+##
+## Adresã URL Gresitã sablon Email pentru SABnybd 
+## Acesta este un sablon Cheetah
+## Documentatie : http://sabnzbd.wikidot.com/email-templates
+##
+## Liniile noi si spatiile sunt importante!
+##
+## Acestea sunt headerele email
+Cãtre: $to
+De la: $from
+Datã: $date
+Subiect: SABnzbd nu a reusit sã descarce un NZB
+X-priority: 5
+X-MS-priority: 5
+## Dupã aceasta urmeazã corpul email, linia goalã e necesarã !
+
+Salut,
+
+SABnzbd nu a putut descãrca NZB-ul de la adresa $url.
+Mesajul de eroare a fost: $msg
+
+La revedere!

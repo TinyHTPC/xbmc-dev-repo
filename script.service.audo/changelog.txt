@@ -1,0 +1,29 @@
+1.0.5
+- update to CouchPotatoServer-45b2dff
+- Fix XBMC crash on RPI due to wake function
+- Fix XBMC crash on frodo
+
+1.0.4
+- update to CouchPotatoServer-b45307e
+- update to HeadPhones-88af845
+
+1.0.3
+- fix for installs not running transmission addon
+- fixed missing utilities
+- now can wake periodically when sabnzbd is disabled
+- restart when settings dialog is accessed
+
+1.0.2
+- update to HeadPhones-e67d324
+- update to CouchPotatoServer-2402834
+- updates to addon structure
+
+1.0.1
+- updated unrar to v5.01
+- fixed issue with SABnzbd prevent idle shutdown
+- added fanart
+- update to HeadPhones-a6532d1
+- update to SickBeard-063a806
+
+1.0.0
+- initial version

@@ -1,0 +1,23 @@
+#encoding UTF-8
+##
+## Plantilla de correo para URLs incorrectas de SABnzbd
+## Esta es una plantilla Cheetah
+## Documentación: http://sabnzbd.wikidot.com/email-templates
+##
+## Líneas nuevas y espacios en blanco IMPORTAN!
+##
+## Estas son las cabeceras del email
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd ha encontrado un error al recuperar un NZB
+X-priority: 5
+X-MS-priority: 5
+## After this comes the body, the empty line is required!
+
+Hola,
+
+SABnzbd ha encontrado un error al descargar un NZB  desde $url.
+El error ha sido: $msg
+
+Un saludo

@@ -1,0 +1,26 @@
+#encoding UTF-8
+##
+## RSS Email skabelon til SABnzbd
+## Dette er Cheetah skabelon
+## Dokumentation: http://sabnzbd.wikidot.com/email-templates
+##
+## Linjeskift og blanktegn er betydelig!
+##
+## Dette er email headers
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd har tilføjet $antal jobs til køen
+X-priority: 5
+X-MS-priority: 5
+## Efter dette kommer body, den tomme linje kræves!
+
+Hej,
+
+SABnzbd har tilføjet $antal job(s) til køen.
+De er fra RSS feed "$feed".
+<!--#for $job in $jobs#-->
+    $job <!--#slurp#-->
+<!--#end for#-->
+
+Farvel

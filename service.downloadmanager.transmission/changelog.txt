@@ -1,3 +1,6 @@
+[B][COLOR=FF56ADDA]1.0.12[/COLOR][/B]
+• Move Transmission cache folder to addon_data
+
 [B][COLOR=FF56ADDA]1.0.11[/COLOR][/B]
 • Recompile Transmission armhf
 • Change default location of .torrent files

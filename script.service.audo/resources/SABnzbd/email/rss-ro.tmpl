@@ -1,0 +1,25 @@
+#encoding UTF-8
+## Sablon Email RSS pentru SABnzbd
+## Acesta este un sablon Cheetah 
+## Documentatie: http://sabnzbd.wikidot.com/email-templates
+##
+## Rândurile noi si caracterele spatiu sunt importante!
+##
+## Acestea sunt antetele email
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd a adãugat $amount sarcini în coadã
+X-priority: 5
+X-MS-priority: 5
+## Dupã acesta urmeazã continutul, este necesar o linie goalã!
+
+Salut,
+
+SABnzbd a adãugat $amount sarcinã(e) în coadã.
+Ele sunt din fluxuri RSS "$feed".
+<!--#for $job in $jobs#-->
+    $job <!--#slurp#-->
+<!--#end for#-->
+
+La revedere !

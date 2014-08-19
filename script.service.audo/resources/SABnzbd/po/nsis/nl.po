@@ -1,0 +1,114 @@
+# Dutch translation for sabnzbd
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the sabnzbd package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: sabnzbd\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-08-14 18:42+0000\n"
+"PO-Revision-Date: 2013-11-03 22:38+0000\n"
+"Last-Translator: markheloking <markheloking@live.nl>\n"
+"Language-Team: Dutch <nl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-11-04 05:55+0000\n"
+"X-Generator: Launchpad (build 16820)\n"
+
+#: NSIS_Installer.nsi:416
+msgid "Go to the SABnzbd Wiki"
+msgstr "Ga naar de SABnzbd Wiki"
+
+#: NSIS_Installer.nsi:418
+msgid "Show Release Notes"
+msgstr "Toon vrijgave bericht"
+
+#: NSIS_Installer.nsi:420
+msgid "Support the project, Donate!"
+msgstr "Steun het project, Doneer!"
+
+#: NSIS_Installer.nsi:422
+msgid "Please close \"SABnzbd.exe\" first"
+msgstr "Sluit \"SABnzbd.exe\" eerst af"
+
+#: NSIS_Installer.nsi:424
+msgid ""
+"                  >>>> WARNING <<<<\\r\\n\\r\\nPlease, first check the "
+"release notes or go to http://wiki.sabnzbd.org/introducing-0-7-0 !"
+msgstr ""
+"                  >>>> WAARSCHUWING <<<<\\\\r\\\\n\\\\r\\\\nLees eerst het "
+"vrijgave bericht of ga naar http://wiki.sabnzbd.org/introducing-0-7-0 !"
+
+#: NSIS_Installer.nsi:426
+msgid "This will uninstall SABnzbd from your system"
+msgstr "Dit verwijdert SABnzbd van je systeem"
+
+#: NSIS_Installer.nsi:428
+msgid "Run at startup"
+msgstr "Opstarten bij systeem start"
+
+#: NSIS_Installer.nsi:430
+msgid "Desktop Icon"
+msgstr "Bureaubladpictogram"
+
+#: NSIS_Installer.nsi:432
+msgid "NZB File association"
+msgstr "NZB bestanden koppelen aan SABnzbd"
+
+#: NSIS_Installer.nsi:434
+msgid "Delete Program"
+msgstr "Programma verwijderen"
+
+#: NSIS_Installer.nsi:436
+msgid "Delete Settings"
+msgstr "Verwijder instellingen"
+
+#: NSIS_Installer.nsi:438
+msgid ""
+"This system requires the Microsoft runtime library VC90 to be installed "
+"first. Do you want to do that now?"
+msgstr ""
+"Op dit systeem moeten eerst de Microsoft runtime bibliotheek VC90 "
+"geïnstalleerd worden. Wilt u dat nu doen?"
+
+#: NSIS_Installer.nsi:440
+msgid "Downloading Microsoft runtime installer..."
+msgstr "Downloaden van de Microsoft bibliotheek"
+
+#: NSIS_Installer.nsi:442
+msgid "Download error, retry?"
+msgstr "Download mislukt, opnieuw proberen?"
+
+#: NSIS_Installer.nsi:444
+msgid "Cannot install without runtime library, retry?"
+msgstr "Installeren heeft geen zin zonder de bibliotheek, opnieuw proberen?"
+
+#: NSIS_Installer.nsi:446
+msgid ""
+"You cannot overwrite an existing installation. \\n\\nClick `OK` to remove "
+"the previous version or `Cancel` to cancel this upgrade."
+msgstr ""
+"U kunt geen bestaande installatie overschrijven.\\n\\nKlik op `OK` om de "
+"vorige versie te verwijderen of op `Annuleren` om te stoppen."
+
+#: NSIS_Installer.nsi:448
+msgid "Your settings and data will be preserved."
+msgstr "Je instellingen en bestanden blijven behouden."
+
+#~ msgid "Start SABnzbd (hidden)"
+#~ msgstr "Start SABnzbd (verborgen)"
+
+#~ msgid "Delete Logs"
+#~ msgstr "Verwijder logging"
+
+#~ msgid "Delete Cache"
+#~ msgstr "Verwijder Cache"
+
+#~ msgid ""
+#~ "                  >>>> WARNING <<<<\\r\\n\\r\\nPlease, first check the "
+#~ "release notes or go to http://wiki.sabnzbd.org/introducing-0-6-0 !"
+#~ msgstr ""
+#~ "                  >>>> WAARSCHUWING <<<<\\r\\n\\r\\nLees eerst het vrijgave "
+#~ "bericht of ga naar \"http://wiki.sabnzbd.org/introducing-0-6-0 !\""

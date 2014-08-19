@@ -19,4 +19,5 @@ while not xbmc.abortRequested:
     time.sleep(0.250)
 
 #xbmc.executebuiltin('XBMC.RunScript(%s)' % __stop__, True)
-subprocess.Popen(__kill__, shell=True, close_fds=True)
+#subprocess.Popen(__kill__, shell=True, close_fds=True)
+xbmc.executebuiltin('XBMC.RunScript(%s)' % __kill__, True)

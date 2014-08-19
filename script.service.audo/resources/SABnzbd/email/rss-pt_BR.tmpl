@@ -1,0 +1,26 @@
+#encoding UTF-8
+##
+## Template de e-mail RSS para SABnzbd
+## Este é um template Cheetah
+## Documentação: http://sabnzbd.wikidot.com/email-templates
+##
+## Novas linhas e espaços em branco são significativos!
+##
+## Estes são os cabeçalhos de e-mail
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd adicionou $amount <!--#if $amount == "1" then "tarefa" else "tarefas" #--> à fila
+X-priority: 5
+X-MS-priority: 5
+## Depois daqui vem o corpo. A linha vazia é necessária!
+
+Olá,
+
+SABnzbd adicionou $amount <!--#if $amount == "1" then "tarefa" else "tarefas" #--> à fila.
+Elas são do feed RSS "$feed".
+<!--#for $job in $jobs#-->
+    $job <!--#slurp#-->
+<!--#end for#-->
+
+Tchau!

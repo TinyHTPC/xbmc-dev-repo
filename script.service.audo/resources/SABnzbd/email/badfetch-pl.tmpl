@@ -1,0 +1,23 @@
+#encoding UTF-8
+##
+## Szablon wiadomosci blednego pobierania URL SABnzbd
+## To jest szablon Cheetah
+## Dokumentacja: http://sabnzbd.wikidot.com/email-templates
+##
+## Znaki nowego wiersza i biale znaki maja znaczenie!
+##
+## To sa naglówki wiadomosci
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd nie udalo sie pobrac pliku NZB
+X-priority: 5
+X-MS-priority: 5
+## Po tym nastepuje tresc. Pusty wiersz jest wymagany!
+
+Czesc,
+
+SABnzbd nie udalo sie pobrac pliku NZB z $url.
+Komunikat bledu: $msg
+
+Do uslyszenia.

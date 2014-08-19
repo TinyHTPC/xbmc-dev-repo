@@ -1,0 +1,42 @@
+#encoding UTF-8
+##
+## Template padrão de e-mail para SABnzbd
+## Este é um template Cheetah
+## Documentação: http://sabnzbd.wikidot.com/email-templates
+##
+## Novas linhas e espaços em branco são significativos!
+##
+## Estes são os cabeçalhos de e-mail
+To: $to
+From: $from
+Date: $date
+Subject: SABnzbd <!--#if $status then "completou " else "falhou n" #-->a tarefa $name
+X-priority: 5
+X-MS-priority: 5
+## Depois daqui vem o corpo. A linha vazia é necessária!
+
+Olá,
+<!--#if $status #-->
+SABnzbd baixou "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#else#-->
+SABnzbd falhou no download de "$name" <!--#if $msgid=="" then "" else "(newzbin #" + $msgid + ")"#-->
+<!--#end if#-->
+Completado em $end_time
+Baixados $size
+
+Resultados da tarefa:
+<!--#for $stage in $stages #-->
+Etapa $stage <!--#slurp#-->
+<!--#for $result in $stages[$stage]#-->
+    $result <!--#slurp#-->
+<!--#end for#-->
+<!--#end for#-->
+<!--#if $script!="" #-->
+Retorno do script de usuário "$script" (Código de retorno = $script_ret):
+$script_output
+<!--#end if#-->
+<!--#if $status #-->
+Aproveite!
+<!--#else#-->
+Lamento!
+<!--#end if#-->
