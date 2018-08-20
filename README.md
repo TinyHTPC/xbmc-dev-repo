@@ -1,4 +1,4 @@
 xbmc-dev-repo
 =============
 
-Beta addons, testing purposes only
+Beta addons, testing purposes only. Nothing here.
